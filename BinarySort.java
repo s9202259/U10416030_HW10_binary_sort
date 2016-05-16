@@ -7,15 +7,18 @@ public class BinarySort {
     public static void main(String[] args) {
         SecureRandom random = new SecureRandom();
 
+        //an array to save numbers
         Integer number[] = new Integer[20];
-        int randomPlace;
-        int hold;
+        int randomPlace;    //make a random place to switch number
+        int hold;   //to save a number temporary
         
+        //set array number[] in 1 to 20
         for(int i = 0; i < 20; i++) {
             number[i] = i + 1;
         }
         
-        for(int i = 0;i<20;i++){
+        //random the array
+        for(int i = 0; i < 20; i++) {
             randomPlace = abs(random.nextInt() )% 10;
             hold = number[randomPlace];
             number[randomPlace] = number[i];
@@ -25,7 +28,7 @@ public class BinarySort {
         BinaryTree binaryTree = new BinaryTree(number);
         
         System.out.print("Array at first: ");
-        for(int i =0;i <20; i++) {
+        for(int i = 0; i < 20; i++) {
             System.out.print(number[i]+" ");
         }
 
@@ -43,8 +46,9 @@ class BinaryTree <E extends Comparable<E>> {
     public BinaryTree(){        
     }
     
+    //add numbers
     public BinaryTree(E[] objects) {
-        for(int i = 0; i < objects.length; i++) {
+        for (int i = 0; i < objects.length; i++) {
             Number(objects[i]);
         }
     }
@@ -56,6 +60,7 @@ class BinaryTree <E extends Comparable<E>> {
         else {
             TreeNode<E> first = null;
             TreeNode<E> Node = node;
+            
             while (Node != null) {
             	if (e.compareTo(Node.element) > 0){
                     first = Node;
@@ -66,6 +71,7 @@ class BinaryTree <E extends Comparable<E>> {
                     Node = Node.small;
                 }
             }
+            
             if (e.compareTo(first.element) < 0) {
                 first.small = new TreeNode(e);
             }
@@ -76,15 +82,17 @@ class BinaryTree <E extends Comparable<E>> {
         size++;        
     }    
     
+    //to print result
     public String toString() {
         numberInside(node);        
         return print;
     }
     
-    public void numberInside(TreeNode<E> e){
+    //to set result
+    public void numberInside(TreeNode<E> e) {
         if (e != null) {
             numberInside(e.small);
-            print = print + e.element + " ";            
+            print = print + e.element + " ";
             numberInside(e.big);
         }
     }
@@ -95,7 +103,7 @@ class TreeNode<E extends Comparable<E>> {
     TreeNode<E> big;
     TreeNode<E> small;
 
-    public TreeNode(E e){
+    public TreeNode(E e) {
         element = e;
     }
 }
